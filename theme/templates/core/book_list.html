@@ -1,0 +1,33 @@
+{% extends "../base.html" %}
+
+{% block page_content %}
+    <section>
+        <div>
+            <h2 class="text-center text-4xl my-10 text-teal-800">Libros</h2>
+            <div id="book-results" class="flex flex-col gap-5 text-center md:grid md:grid-cols-2 md:gap-5 md:mx-10 xl:grid-cols-3">
+                {% for book in books %}
+                    {% include '_includes/_book.html' %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="flex justify-center mb-10">
+            <nav class="flex gap-3">
+                {% if page_obj.has_previous %}
+                    <a class="w-6" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                        <img src="/media/circle-left.svg" alt="anterior">
+                    </a>
+                {% endif %}
+                <span>
+                    {{ page_obj.number }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a class="w-6" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                        <img src="/media/circle-right.svg" alt="siguiente">
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+    </section>
+{% endblock %}

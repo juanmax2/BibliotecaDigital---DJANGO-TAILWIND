@@ -1,0 +1,70 @@
+{% extends "../base.html" %}
+
+{% block page_content %}
+    {% include '_includes/_message.html' %}
+    <section class="w-[80%] mx-auto bg-teal-50 shadow-2xl rounded-2xl mb-10 p-4 md:w-full">
+        {% if book.cover %}
+            <img class="w-[50%] mx-auto" src="{{ book.cover.url }}" alt="">
+        {% endif %}
+
+        <div class="rounded-2xl mt-2 p-2 text-center flex flex-col gap-5">
+            <h3 class="text-2xl ">
+                {{ book.title }}
+            </h3>
+            <p >
+                {{ book.summary }}
+            </p>
+            <div class="flex mx-auto gap-2">
+                <p>
+                    Autor:
+                </p>
+                <p class="font-bold"> 
+                    {{ book.author }}
+                </p>
+            </div>
+            <div class="flex mx-auto gap-2">
+                <p>
+                    Disponibilidad:
+                </p>
+                {% if book.stock >= 1 %}
+                    <p class="text-green-400">
+                        {{ book.stock }} En stock 
+                    </p>
+                {% else %}
+                    <p class="text-red-500">
+                        Sin stock
+                    </p>
+                {% endif %}
+            </div>
+            {% if user.is_authenticated %}
+                {% if book.stock > 0 %}
+                    <div class="flex flex-col mt-4 mb-10">
+                        <p class="mx-auto">
+                            <a class="border rounded-2xl p-2 border-teal-600 text-teal-600 hover:border-white hover:text-white hover:bg-teal-600" href="{% url 'loan_book' book.slug %}">Solicitar</a>
+                        </p>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="flex flex-col gap-6">
+                    <p class="text-center">
+                        Inicia sesión o registrate para ver y pedir prestado cualquiera de nuestros libros!
+                    </p>
+                    <div class="flex mx-auto gap-6">
+                        <button class="inline-block mx-auto border rounded-2xl p-2 bg-teal-300 border-teal-700 text-teal-700 hover:border-white hover:text-white hover:bg-teal-700">
+                            <a href="{% url 'login' %}">Iniciar sesión</a>
+                        </button>
+                        <button class="inline-block mx-auto border rounded-2xl p-2 bg-teal-300 border-teal-700 text-teal-700 hover:border-white hover:text-white hover:bg-teal-700">
+                            <a href="{% url 'register' %}">Registrate</a>
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    <div class="flex flex-col mt-4 mb-10">
+        <p class="mx-auto">
+            <a class="border rounded-2xl p-2 border-teal-600 text-teal-600 hover:border-white hover:text-white hover:bg-teal-600 bg-teal-50" href="{% url 'book_list' %}">Lista de libros</a>
+        </p>
+    </div>
+
+{% endblock %}

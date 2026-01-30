@@ -1,0 +1,24 @@
+{% extends "../base.html" %}
+{% load tailwind_filters %}
+
+{% block page_content %}
+
+    <div class="w-full max-w-xl mx-auto p-6 justify-center align-center">
+
+        <h1 class="text-3xl text-teal-800 my-10 text-center">
+            Regístrate
+        </h1>
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+
+            {{form | crispy}}
+
+            <div class="flex justify-center">
+                <button class="border rounded-2xl p-2 border-teal-600 text-teal-600 hover:border-white hover:text-white hover:bg-teal-600">Registrarse</button>
+            </div>
+
+        </form>    
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "../base.html" %}
+
+{% block page_content %}
+
+    <section class="w-[80%] mx-auto bg-teal-50 shadow-2xl rounded-2xl mb-10 p-4 md:w-full">
+        {% if author.image %}
+            <img class="w-[50%] mx-auto" src="{{ author.image.url }}" alt="Imagen de {{ author.name }}">
+        {% else %}
+            <img class="w-[50%] mx-auto" src="media/no_picture.png" alt="No hay imagen">
+        {% endif %}
+
+        <div class="rounded-2xl mt-2 p-2 text-center flex flex-col gap-5">
+            <h3 class="text-2xl ">
+                {{ author.name }} {{ author.last_name }}
+            </h3>
+            <p >
+                {{ author.biography }}
+            </p>
+            <div>
+                <h3 class="text-center text-2xl my-10 text-teal-800">
+                    Libros del autor
+                </h3>
+                <div class="flex flex-col gap-5 text-center md:grid md:grid-cols-2 md:gap-5 md:mx-10 xl:grid-cols-3">
+                    {% for book in author_books %}
+                        {% include '_includes/_book.html' %}
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="flex flex-col mt-4">
+                <p>
+                    <a class="border rounded-2xl p-2 border-teal-600 text-teal-600 hover:border-white hover:text-white hover:bg-teal-600" href="{% url 'author_list' %}">Lista de autores</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

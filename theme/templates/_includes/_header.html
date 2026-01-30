@@ -1,0 +1,48 @@
+
+<header class="p-3 bg-teal-900">
+    <div class="flex justify-between items-center">
+        <a href="{% url 'home' %}" class="inline-block text-2xl bg-teal-400 p-2 rounded-3xl text-white">
+            <h1>
+                Biblionline
+            </h1>
+        </a>
+
+        <nav class="relative">
+            <div class="">
+                <button id="btnMenu">
+                    <img class="w-12" src="/media/menu.png" alt="Menu">
+                </button>
+                <div id="containerMenu" class="hidden absolute -right-10 md:right-0 transition-all duration-300 transform">
+                    <div class="flex flex-col mr-2">
+                        <a class="border mr-10 border-teal-500 bg-teal-50 hover:bg-teal-300 p-2" href="{% url 'author_list' %}">Autores</a>
+                        <a class="border mr-10 border-teal-500 bg-teal-50 hover:bg-teal-300 p-2" href="{% url 'book_list' %}">Libros</a>
+                        {% if user.is_authenticated %}
+                            <a class="border mr-10 border-teal-500 bg-teal-50 hover:bg-teal-300 p-2" href="{% url 'my_loans' %}">Mis prestamos</a>
+                            <a class="border mr-10 border-teal-500 bg-teal-50 hover:bg-teal-300 p-2" href="{% url 'logout' %}">Cerrar sesión</a>
+                        {% else %}
+                            <a class="border mr-10 border-teal-500 bg-teal-50 hover:bg-teal-300 p-2" href="{% url 'login' %}">Login</a>
+                            <a class="border mr-10 border-teal-500 bg-teal-50 hover:bg-teal-300 p-2" href="{% url 'register' %}">Registrarse</a>
+                        {% endif %}
+                    </div>   
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="flex my-3">
+        <form class="flex relative mx-auto" action="{% url 'book_list' %}" method="GET">
+            <input 
+                type="text"
+                name="q"
+                id="q"
+                placeholder="Busca libro o autor..."
+                value="{{ rquest.GET.q }}"
+                class="bg-teal-50 p-1 rounded-2xl"
+            >
+            <div class="absolute left-38">
+                <button>
+                    <img class="w-7" src="/media/search.svg" alt="">
+                </button>
+            </div>
+        </form>
+    </div>
+</header>

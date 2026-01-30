@@ -1,0 +1,42 @@
+{% extends "../base.html" %}
+
+{% block page_content %}
+
+    <div class="flex flex-col mb-10">
+        <h1 class="text-3xl text-teal-800 my-10 text-center mb-10">
+            Bienvenido a tu biblioteca
+        </h1>
+
+        {% if request.user.is_authenticated %}
+            <p class="text-center">
+                Adentrate en nuestra lista de libros y escoge cual quieres pedir prestado.
+            </p>
+        {% else %}
+            
+        <div class="flex flex-col gap-6">
+            <p class="text-center">
+                Inicia sesión o registrate para ver y pedir prestado cualquiera de nuestros libros!
+            </p>
+            <div class="flex mx-auto gap-6">
+                <button class="inline-block mx-auto border rounded-2xl p-2 bg-teal-300 border-teal-700 text-teal-700 hover:border-white hover:text-white hover:bg-teal-700">
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                </button>
+                <button class="inline-block mx-auto border rounded-2xl p-2 bg-teal-300 border-teal-700 text-teal-700 hover:border-white hover:text-white hover:bg-teal-700">
+                    <a href="{% url 'register' %}">Registrate</a>
+                </button>
+            </div>
+        {% endif %}
+    </div>
+    {% include '_includes/_message.html' %}
+    <section>
+        <div>
+            <h2 class="text-center text-2xl my-10 text-teal-800">Grandes libros</h2>
+            <div class="flex flex-col gap-5 text-center md:grid md:grid-cols-2 md:gap-5 md:mx-10 xl:grid-cols-3">
+                {% for book in list_books %}
+                    {% include '_includes/_book.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
