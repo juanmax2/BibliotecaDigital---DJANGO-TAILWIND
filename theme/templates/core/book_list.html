@@ -1,4 +1,5 @@
 {% extends "../base.html" %}
+{% load static %}
 
 {% block page_content %}
     <section>
@@ -15,7 +16,7 @@
             <nav class="flex gap-3">
                 {% if page_obj.has_previous %}
                     <a class="w-6" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
-                        <img src="/media/circle-left.svg" alt="anterior">
+                        <img src="{% static 'circle-left.svg' %}" alt="anterior">
                     </a>
                 {% endif %}
                 <span>
@@ -24,7 +25,7 @@
 
                 {% if page_obj.has_next %}
                     <a class="w-6" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
-                        <img src="/media/circle-right.svg" alt="siguiente">
+                        <img src="{% static 'circle-right.svg' %}" alt="siguiente">
                     </a>
                 {% endif %}
             </nav>
