@@ -2,6 +2,9 @@ from dotenv import load_dotenv
 import os
 from pathlib import Path
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,3 +159,14 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+cloudinary.config(
+    cloud_name = 'TU_CLOUD_NAME',
+    api_key = 'TU_API_KEY',
+    api_secret = 'TU_API_SECRET'
+)
+
+# Configura Django para usar Cloudinary en lugar del sistema de archivos local
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
