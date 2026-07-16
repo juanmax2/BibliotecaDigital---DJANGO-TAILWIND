@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'theme',
     'crispy_forms',
     'crispy_tailwind',
+    'cloudinary',
+    'cloudinary_storage',
+
     
     'author',
     'book',
@@ -157,15 +160,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
 cloudinary.config(
-    cloud_name = 'TU_CLOUD_NAME',
-    api_key = 'TU_API_KEY',
-    api_secret = 'TU_API_SECRET'
+    cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key = os.getenv('CLOUDINARY_API_KEY'),
+    api_secret = os.getenv('CLOUDINARY_API_SECRET') 
 )
 
 # Configura Django para usar Cloudinary en lugar del sistema de archivos local
