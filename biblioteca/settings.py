@@ -56,6 +56,10 @@ if DEBUG:
     # Add django_browser_reload only in DEBUG mode
     INSTALLED_APPS += ["django_browser_reload"]
 
+if not DEBUG:
+    # Render usa esta variable para servir archivos de forma eficiente
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
