@@ -145,4 +145,3 @@ db.sqlite3
 node_modules/
 static_cdn/
 staticfiles/
-media/
