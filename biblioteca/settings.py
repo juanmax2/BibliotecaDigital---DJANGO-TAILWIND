@@ -19,6 +19,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+# ALLOWED_HOSTS = ['bibliotecadigital-0h38.onrender.com', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
 
 
@@ -140,7 +141,9 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
 
 LOGIN_URL = 'login'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'theme/static'),
+]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
