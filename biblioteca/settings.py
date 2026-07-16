@@ -141,7 +141,7 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 
 LOGIN_URL = 'login'
 
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 
