@@ -11,7 +11,7 @@ class Book(models.Model):
     summary = models.TextField('Resumen', help_text='De qué trata el libro')
     isbn = models.CharField('ISBN', max_length=13, unique=True)
     stock = models.PositiveIntegerField('Ejemplares disponibles', default=1)
-    cover = models.ImageField('Portada', upload_to='covers/', null=True, blank=True)
+    cover = models.ImageField('Portada', upload_to='', null=True, blank=True)
     
     def __str__(self):
         return self.title
