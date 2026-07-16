@@ -174,6 +174,6 @@ cloudinary.config(
     api_key = os.getenv('CLOUDINARY_API_KEY'),
     api_secret = os.getenv('CLOUDINARY_API_SECRET') 
 )
-
+print(f"DEBUG: Cloudinary Cloud Name es: {cloudinary.config().cloud_name}")
 # Configura Django para usar Cloudinary en lugar del sistema de archivos local
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
