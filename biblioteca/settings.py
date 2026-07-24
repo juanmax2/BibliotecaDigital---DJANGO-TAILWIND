@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'author',
     'book',
     'loan',
+    'reviews',
     'user.apps.UserConfig',
 ]
 

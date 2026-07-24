@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+
+from reviews.views import add_review
 from .views import HomeView
 from book.views import BookDetailView, BookListView
 from author.views import AuthorListView, AuthorDetailView
@@ -17,6 +19,7 @@ urlpatterns = [
     path('authors/', AuthorListView.as_view(), name='author_list'),
     path('author/<int:pk>/', AuthorDetailView.as_view(), name='author_detail'),
     path('book/<slug:slug>/loan/', loan_book, name='loan_book'),
+    path('book/<slug:slug>/review/', add_review, name='add_review'),
     path('my-loans/', MyLoansView.as_view(), name='my_loans'),
     path('loan/<int:pk>/return/', return_book, name='return_book'),
     path('register/', RegistrationView.as_view(), name='register'),

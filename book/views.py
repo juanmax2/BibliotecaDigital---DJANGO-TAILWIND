@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from reviews.forms import ReviewForm
 from .models import Book
 from django.views.generic import DetailView, ListView
 from django.db.models import Q
@@ -8,6 +10,12 @@ class BookDetailView(DetailView):
     model = Book
     template_name = 'core/book_detail.html'
     context_object_name = 'book'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['form'] = ReviewForm()
+        return context
     
 
 class BookListView(ListView):
